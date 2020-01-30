@@ -1,0 +1,13 @@
+version: '2'
+services:
+  db:
+    image: postgres:10-alpine
+    container_name: db
+    restart: always
+    volumes:
+      - ./db-data/:/var/lib/postgresql/data/:cached
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: db
+      POSTGRES_PASSWORD: db_password
