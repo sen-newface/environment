@@ -1,5 +1,13 @@
 version: '2'
 services:
+  php-fpm:
+    image: php:7.3.0-fpm-alpine3.8
+    container_name: php-fpm
+    volumes:
+      - ./code:/var/www/public/:cached
+    restart: always
+    depends_on:
+      - nginx
   nginx:
     image: nginx:alpine
     container_name: nginx
