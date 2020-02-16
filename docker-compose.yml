@@ -4,7 +4,7 @@ services:
     build: ./php-fpm
     container_name: php
     volumes:
-      - ./code:/var/www/public/:cached
+      - ./laravel:/var/laravel:cached
     restart: always
     depends_on:
       - nginx
