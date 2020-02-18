@@ -45,6 +45,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
   && mv /usr/local/bin/composer.phar  /usr/local/bin/composer \
   && composer global require hirak/prestissimo
 
-WORKDIR /var/laravel
+WORKDIR /var/www
 
 CMD ["/usr/sbin/php-fpm","-F","-y","/etc/php-fpm.conf"]

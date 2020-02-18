@@ -4,7 +4,7 @@ services:
     build: ./php-fpm
     container_name: php
     volumes:
-      - ../laravel:/var/laravel
+      - ../laravel:/var/www
     restart: always
     depends_on:
       - db
