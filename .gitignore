@@ -1,0 +1,4 @@
+**/db-data/*
+**/redis/*
+!.gitkeep
+.env

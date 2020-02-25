@@ -1,0 +1,38 @@
+version: '2'
+services:
+  php:
+    build: ./php-fpm
+    container_name: php
+    volumes:
+      - ../laravel:/var/www
+    restart: always
+    depends_on:
+      - db
+      - nginx
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl/:/etc/ssl/
+    restart: always
+  db:
+    image: postgres:10-alpine
+    container_name: postgresql
+    restart: always
+    volumes:
+      - ./db-data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  redis:
+    image: redis:latest
+    container_name: redis
+    volumes:
+      - ./redis:/data
+    restart: always
