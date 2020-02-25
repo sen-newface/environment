@@ -9,6 +9,15 @@ services:
     depends_on:
       - db
       - nginx
+  ethnam:
+    build: ./php-fpm
+    container_name: ethnam
+    volumes:
+      - ../ethnam:/var/www
+    restart: always
+    depends_on:
+      - db
+      - nginx
   nginx:
     image: nginx:alpine
     container_name: nginx
