@@ -1,8 +1,8 @@
 version: '2'
 services:
-  php:
+  laravel:
     build: ./php-fpm
-    container_name: php
+    container_name: laravel
     volumes:
       - ../laravel:/var/www
     restart: always
