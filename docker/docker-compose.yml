@@ -1,10 +1,19 @@
 version: '2'
 services:
-  php:
+  laravel:
     build: ./php-fpm
-    container_name: php
+    container_name: laravel
     volumes:
       - ../laravel:/var/www
+    restart: always
+    depends_on:
+      - db
+      - nginx
+  ethnam:
+    build: ./php-fpm
+    container_name: ethnam
+    volumes:
+      - ../ethnam:/var/www
     restart: always
     depends_on:
       - db
