@@ -18,6 +18,15 @@ services:
     depends_on:
       - db
       - nginx
+  yeycheese:
+    build: ./php-fpm
+    container_name: yeycheese
+    volumes:
+      - ../yeycheese:/var/www
+    restart: always
+    depends_on:
+      - db
+      - nginx
   nginx:
     image: nginx:alpine
     container_name: nginx
