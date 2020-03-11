@@ -1,5 +1,14 @@
 version: '2'
 services:
+  plane:
+    build: ./php-fpm
+    container_name: plane
+    volumes:
+      - ../plane:/var/www
+    restart: always
+    depends_on:
+      - db
+      - nginx
   laravel:
     build: ./php-fpm
     container_name: laravel
