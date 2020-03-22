@@ -45,6 +45,7 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/ssl/:/etc/ssl/
+      - ../laravel/public:/var/www
     restart: always
   db:
     image: postgres:10-alpine
