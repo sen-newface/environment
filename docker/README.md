@@ -66,6 +66,6 @@ docker-compose up -d
 - Ethnam研修環境
   - https://ethnam.localapp.jp
 - 生PHP実行環境
-  - plane.localapp.jp
+  - https://plane.localapp.jp
 - 最終研修課題実行環境
-  - yeahcheese.localapp.jp
+  - https://yeahcheese.localapp.jp
