@@ -43,10 +43,17 @@ docker-compose up -d
 
 1. `environment/docker/nginx/ssl/server.crt` をキーチェーンアクセス.appで開く
 3. 1.で読み込んだ `server.crt` を選択
-4. 「証明書」タブの一番下に「*.localapp.jp」という証明書が表示されるのでクリック
+4. 「証明書」タブの一番下に「\*.localapp.jp」という証明書が表示されるのでクリック
 5. 「信頼」を開いて上から2番目の「SSL (Secure Sockets Layer)」を「常に信頼」に変更
 6. ブラウザの新しいタブを開いて `laravel.localapp.jp` にアクセスする
 7. アドレスバーに「保護された通信」と表示されていれば問題なし
+
+# Mac起動後に開発環境起動
+1度環境構築をすると、dockerを起動するだけで大丈夫です
+```sh
+cd ~/sen-newface/environment/docker
+docker-compose up -d
+```
 
 # 各種環境へのリンク
 - Laravel研修環境
