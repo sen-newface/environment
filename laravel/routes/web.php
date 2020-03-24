@@ -20,3 +20,10 @@ Route::get('/', function () {
 Route::get('/js-todo-list', function () {
     return view('js-todo-list');
 });
+Route::get('/vue-todo-list', function () {
+    return view('vue-todo-list');
+});
+Route::get('/ts-todo-list', function () {
+    return view('ts-todo-list');
+});
+
