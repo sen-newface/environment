@@ -33,9 +33,14 @@ git clone git@github.com:sen-newface/environment.git
 aws ecr get-login --no-include-email
 ```
 
-## Dockerを起動
+## Docker用のenvをコピー
 ```sh
 cd environment/docker
+cp .env.sample .env
+```
+
+## Dockerを起動
+```sh
 docker-compose up -d
 ```
 
