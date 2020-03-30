@@ -1,0 +1,35 @@
+body {
+    margin-top: 16px;
+}
+
+.flex {
+    display: flex;
+}
+
+.em-8 {
+    font-size: .8em !important;
+}
+
+.clear {
+    clear: both;
+}
+
+.b-right {
+    margin-left: auto;
+}
+
+.templates {
+    display: none;
+}
+
+.todo-add-form {
+    margin-bottom: 24px;
+}
+
+.todo-delete-btn {
+    cursor: pointer;
+}
+
+.todo-filters {
+    margin-bottom: 8px !important;
+}
