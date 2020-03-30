@@ -30,7 +30,7 @@ git clone git@github.com:sen-newface/environment.git
 
 ## ECRへログイン
 ```sh
-aws ecr get-login --no-include-email
+aws ecr get-login --no-include-email |bash -
 ```
 
 ## Docker用のenvをコピー
