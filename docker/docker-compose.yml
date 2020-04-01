@@ -1,7 +1,7 @@
 version: '2'
 services:
   plane:
-    build: ./php-fpm
+    image: 933714115463.dkr.ecr.ap-northeast-1.amazonaws.com/php-fpm:latest
     container_name: plane
     volumes:
       - ../plane:/var/www
@@ -10,7 +10,7 @@ services:
       - db
       - nginx
   laravel:
-    build: ./php-fpm
+    image: 933714115463.dkr.ecr.ap-northeast-1.amazonaws.com/php-fpm:latest
     container_name: laravel
     volumes:
       - ../laravel:/var/www
@@ -19,7 +19,7 @@ services:
       - db
       - nginx
   ethnam:
-    build: ./php-fpm
+    image: 933714115463.dkr.ecr.ap-northeast-1.amazonaws.com/php-fpm:latest
     container_name: ethnam
     volumes:
       - ../ethnam:/var/www
@@ -28,7 +28,7 @@ services:
       - db
       - nginx
   yeahcheese:
-    build: ./php-fpm
+    image: 933714115463.dkr.ecr.ap-northeast-1.amazonaws.com/php-fpm:latest
     container_name: yeahcheese
     volumes:
       - ../yeahcheese:/var/www
