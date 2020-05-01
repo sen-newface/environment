@@ -47,6 +47,6 @@
     <!-- List -->
     <div class="todo-list-view clear ui huge segments"></div>
   </div>
-  <script src="{{ asset('js/js-todo-list/index.js') }}"></script>
+  <script src="{{ asset('js/vue-todo-list/index.js') }}"></script>
 </body>
 </html>
