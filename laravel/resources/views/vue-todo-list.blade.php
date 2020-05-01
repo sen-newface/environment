@@ -13,7 +13,7 @@
       <i class="tasks icon"></i>
       <div class="content">
         Simple Todo List
-        <div class="sub header">Implemented in Vanilla JS</div>
+        <div class="sub header">Implemented in Vue.js</div>
       </div>
     </header>
 
