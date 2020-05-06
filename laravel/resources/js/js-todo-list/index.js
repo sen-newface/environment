@@ -22,6 +22,21 @@ const app = {};
 app.todos = [];
 
 /**
+ * Todo を置き換える
+ */
+app.replectTodo = todo => {
+  const index = app.todos.findIndex(t => t.id === todo.id);
+  app.todos.splice(index, 1, todo);
+};
+
+/**
+ * Todo を更新
+ */
+app.updateTodos = todos => {
+  app.todos = todos;
+};
+
+/**
  * .templates 以下を検索してテンプレートを生成する
  *
  * @param {string} name
@@ -29,6 +44,36 @@ app.todos = [];
  */
 app.template = name => {
   return document.querySelector(`.templates > .${name}`).cloneNode(true);
+};
+
+/**
+ * 追加用フォームのビューを生成 & 初期化
+ */
+app.initAddFormView = () => {
+  const view = app.template('todo-add-form');
+  const desc = view.querySelector('.todo-add-desc');
+  const addBtn = view.querySelector('.todo-add-btn');
+
+  document
+    .querySelector('.todo-add-form-container')
+    .appendChild(view);
+};
+
+/**
+ * フィルタのビューを生成 & 初期化
+ */
+app.initFilterView = () => {
+  const view = app.template('todo-filter');
+
+  const btns = {
+    all: view.querySelector('.all-btn'),
+    active: view.querySelector('.active-btn'),
+    completed: view.querySelector('.completed-btn'),
+  };
+
+  document
+    .querySelector('.todo-filter-container')
+    .appendChild(view);
 };
 
 /**
@@ -83,11 +128,11 @@ app.todoListView = todoListItemViews => {
  *
  * @param {Array.<Object>} todos
  */
-app.renderTodoList = () => {
+app.renderTodoList = (todos = null) => {
   const container = document.querySelector('.todo-list-view-container');
 
   // todo をビューに変換
-  const itemViews = app.todos.map(app.todoListItemView);
+  const itemViews = (todos || app.todos).map(app.todoListItemView);
 
   lib.removeAllChild(container);
   container.appendChild(app.todoListView(itemViews));
@@ -95,11 +140,14 @@ app.renderTodoList = () => {
 
 // DOM を初期化
 document.addEventListener('DOMContentLoaded', () => {
+  app.initAddFormView();
+  app.initFilterView();
+
   // API からデータを取得
   api.fetchTodos().then(
     todos => {
       // データを追加して描画
-      app.todos.push(...todos);
+      app.updateTodos(todos);
       app.renderTodoList();
     },
     errors => console.error(errors)

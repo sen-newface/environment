@@ -17,23 +17,27 @@
       </div>
     </header>
 
-    <!-- Form for adding items -->
-    <div class="todo-add-form ui fluid action input">
-      <input type="text" placeholder="What needs to be done?">
-      <button class="todo-add-btn block ui basic button">Add</button>
-    </div>
+    <div class="todo-add-form-container"></div>
 
-    <!-- Filters -->
-    <div class="todo-filters ui right floated basic tiny buttons">
-      <button class="all-btn ui button active">all</button>
-      <button class="active-btn ui button">active</button>
-      <button class="completed-btn ui button">completed</button>
-    </div>
+    <div class="todo-filter-container"></div>
 
     <div class="todo-list-view-container"></div>
   </div>
 
   <div class="templates">
+    <!-- 追加用フォーム -->
+    <div class="todo-add-form ui fluid action input">
+      <input class="todo-add-desc" type="text" placeholder="What needs to be done?">
+      <button class="todo-add-btn block ui basic button">Add</button>
+    </div>
+
+    <!-- フィルタ -->
+    <div class="todo-filter ui right floated basic tiny buttons">
+      <button class="all-btn ui button active">all</button>
+      <button class="active-btn ui button">active</button>
+      <button class="completed-btn ui button">completed</button>
+    </div>
+
     <!-- List item -->
     <div class="todo-list-item-view flex ui segment">
       <div class="ui checkbox">
