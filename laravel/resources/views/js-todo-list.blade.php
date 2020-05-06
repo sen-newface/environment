@@ -38,7 +38,7 @@
       <button class="completed-btn ui button">completed</button>
     </div>
 
-    <!-- List item -->
+    <!-- リストアイテム -->
     <div class="todo-list-item-view flex ui segment">
       <div class="ui checkbox">
         <input class="completion-checkbox" type="checkbox">
@@ -48,7 +48,7 @@
       <span class="todo-delete-btn em-8 b-right red">delete</span>
     </div>
 
-    <!-- List -->
+    <!-- リスト -->
     <div class="todo-list-view clear ui huge segments"></div>
   </div>
   <script src="{{ asset('js/js-todo-list/index.js') }}"></script>
