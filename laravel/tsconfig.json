@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "target": "es5",
+    "strict": false,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "lib": ["dom", "es2015"],
+    "downlevelIteration": true
+  },
+  "include": [
+    "resources/ts/**/*"
+  ]
+}
