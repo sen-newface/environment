@@ -13,7 +13,7 @@
       <i class="tasks icon"></i>
       <div class="content">
         Simple Todo List
-        <div class="sub header">Implemented in Vanilla JS</div>
+        <div class="sub header">Implemented in TypeScript</div>
       </div>
     </header>
 
@@ -47,6 +47,6 @@
     <!-- List -->
     <div class="todo-list-view clear ui huge segments"></div>
   </div>
-  <script src="{{ asset('js/js-todo-list/index.js') }}"></script>
+  <script src="{{ asset('js/ts-todo-list/index.js') }}"></script>
 </body>
 </html>
