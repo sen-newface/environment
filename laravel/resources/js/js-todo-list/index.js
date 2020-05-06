@@ -83,9 +83,11 @@ app.todoListView = todoListItemViews => {
  *
  * @param {Array.<Object>} todos
  */
-app.renderTodoList = todos => {
+app.renderTodoList = () => {
   const container = document.querySelector('.todo-list-view-container');
-  const itemViews = todos.map(app.todoListItemView);
+
+  // todo をビューに変換
+  const itemViews = app.todos.map(app.todoListItemView);
 
   lib.removeAllChild(container);
   container.appendChild(app.todoListView(itemViews));
@@ -96,8 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // API からデータを取得
   api.fetchTodos().then(
     todos => {
+      // データを追加して描画
       app.todos.push(...todos);
-      app.renderTodoList(app.todos);
+      app.renderTodoList();
     },
     errors => console.error(errors)
   );
