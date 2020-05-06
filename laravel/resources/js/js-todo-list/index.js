@@ -32,7 +32,7 @@ app.template = name => {
 };
 
 /**
- * TodoListItem ビュー作成
+ * リストアイテムのビューを作成
  *
  * @param {Object} todoItem
  * @return {HTMLElement}
@@ -51,18 +51,20 @@ app.todoListItemView = todoItem => {
   // 削除ボタンの初期化
   const deleteBtn = view.querySelector('.todo-delete-btn');
   deleteBtn.style.display = 'none';
+
+  // マウスオーバーで削除ボタンの表示を切り替える
   view.addEventListener('mouseover', () => {
-    deleteBtn.style.display = 'block';
+    deleteBtn.style.display = 'block'; // 表示
   });
   view.addEventListener('mouseleave', () => {
-    deleteBtn.style.display = 'none';
+    deleteBtn.style.display = 'none'; // 非表示
   });
 
   return view;
 };
 
 /**
- * TodoList ビュー作成
+ * リストのビューを作成
  *
  * @param {Array.<HTMLElement>} todoListItemViews
  * @return HTMLElement
@@ -77,7 +79,7 @@ app.todoListView = todoListItemViews => {
 };
 
 /**
- * TodoList ビューを描画
+ * リストのビューを描画
  *
  * @param {Array.<Object>} todos
  */
@@ -91,6 +93,7 @@ app.renderTodoList = todos => {
 
 // DOM を初期化
 document.addEventListener('DOMContentLoaded', () => {
+  // API からデータを取得
   api.fetchTodos().then(
     todos => {
       app.todos.push(...todos);
