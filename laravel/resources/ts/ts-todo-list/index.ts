@@ -1,5 +1,5 @@
-import api from './api.ts';
-import lib from './lib.ts';
+import api from './api';
+import lib from './lib';
 
 // TODO: delete をクリックした際にリストからアイテムを削除する
 
@@ -22,6 +22,21 @@ const app: any = {};
 app.todos = [];
 
 /**
+ * Todo を置き換える
+ */
+app.replectTodo = todo => {
+  const index = app.todos.findIndex(t => t.id === todo.id);
+  app.todos.splice(index, 1, todo);
+};
+
+/**
+ * Todo を更新
+ */
+app.updateTodos = todos => {
+  app.todos = todos;
+};
+
+/**
  * .templates 以下を検索してテンプレートを生成する
  *
  * @param {string} name
@@ -32,7 +47,37 @@ app.template = name => {
 };
 
 /**
- * TodoListItem ビュー作成
+ * 追加用フォームのビューを生成 & 初期化
+ */
+app.initAddFormView = () => {
+  const view = app.template('todo-add-form');
+  const desc = view.querySelector('.todo-add-desc');
+  const addBtn = view.querySelector('.todo-add-btn');
+
+  document
+    .querySelector('.todo-add-form-container')
+    .appendChild(view);
+};
+
+/**
+ * フィルタのビューを生成 & 初期化
+ */
+app.initFilterView = () => {
+  const view = app.template('todo-filter');
+
+  const btns = {
+    all: view.querySelector('.all-btn'),
+    active: view.querySelector('.active-btn'),
+    completed: view.querySelector('.completed-btn'),
+  };
+
+  document
+    .querySelector('.todo-filter-container')
+    .appendChild(view);
+};
+
+/**
+ * リストアイテムのビューを作成
  *
  * @param {Object} todoItem
  * @return {HTMLElement}
@@ -46,25 +91,25 @@ app.todoListItemView = todoItem => {
 
   // チェックボックスの初期化
   const checkbox = view.querySelector('.completion-checkbox');
-  if (todoItem.state === 'completed') {
-    checkbox.checked = true;
-  }
+  checkbox.checked = todoItem.is_completed;
 
   // 削除ボタンの初期化
   const deleteBtn = view.querySelector('.todo-delete-btn');
   deleteBtn.style.display = 'none';
+
+  // マウスオーバーで削除ボタンの表示を切り替える
   view.addEventListener('mouseover', () => {
-    deleteBtn.style.display = 'block';
+    deleteBtn.style.display = 'block'; // 表示
   });
   view.addEventListener('mouseleave', () => {
-    deleteBtn.style.display = 'none';
+    deleteBtn.style.display = 'none'; // 非表示
   });
 
   return view;
 };
 
 /**
- * TodoList ビュー作成
+ * リストのビューを作成
  *
  * @param {Array.<HTMLElement>} todoListItemViews
  * @return HTMLElement
@@ -79,13 +124,15 @@ app.todoListView = todoListItemViews => {
 };
 
 /**
- * TodoList ビューを描画
+ * リストのビューを描画
  *
  * @param {Array.<Object>} todos
  */
-app.renderTodoList = todos => {
+app.renderTodoList = (todos = null) => {
   const container = document.querySelector('.todo-list-view-container');
-  const itemViews = todos.map(app.todoListItemView);
+
+  // todo をビューに変換
+  const itemViews = (todos || app.todos).map(app.todoListItemView);
 
   lib.removeAllChild(container);
   container.appendChild(app.todoListView(itemViews));
@@ -93,10 +140,15 @@ app.renderTodoList = todos => {
 
 // DOM を初期化
 document.addEventListener('DOMContentLoaded', () => {
+  app.initAddFormView();
+  app.initFilterView();
+
+  // API からデータを取得
   api.fetchTodos().then(
     todos => {
-      app.todos.push(...todos);
-      app.renderTodoList(app.todos);
+      // データを追加して描画
+      app.updateTodos(todos);
+      app.renderTodoList();
     },
     errors => console.error(errors)
   );
