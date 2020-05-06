@@ -11,5 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix
+  .js('resources/js/js-todo-list/index.js', 'public/js/js-todo-list')
+  .ts('resources/ts/ts-todo-list/index.ts', 'public/js/ts-todo-list')
+  .copy('resources/css/js-todo-list.css', 'public/css/js-todo-list.css')
+  .sass('resources/sass/app.scss', 'public/css');
