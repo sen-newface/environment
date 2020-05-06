@@ -1,4 +1,3 @@
-import '../bootstrap';
 import api from './api';
 import lib from './lib';
 
