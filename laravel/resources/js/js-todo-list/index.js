@@ -46,9 +46,7 @@ app.todoListItemView = todoItem => {
 
   // チェックボックスの初期化
   const checkbox = view.querySelector('.completion-checkbox');
-  if (todoItem.state === 'completed') {
-    checkbox.checked = true;
-  }
+  checkbox.checked = todoItem.is_completed;
 
   // 削除ボタンの初期化
   const deleteBtn = view.querySelector('.todo-delete-btn');

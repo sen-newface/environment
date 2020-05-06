@@ -11,17 +11,17 @@ export default {
       {
         id: 1,
         description: 'Example 1, active todo description.',
-        state: 'active',
+        is_completed: false,
       },
       {
         id: 2,
         description: 'Example 2, active todo description.',
-        state: 'active',
+        is_completed: false,
       },
       {
         id: 3,
         description: 'Example 3, completed todo description.',
-        state: 'completed',
+        is_completed: true,
       },
     ];
 
