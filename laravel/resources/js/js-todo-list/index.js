@@ -54,6 +54,22 @@ app.initAddFormView = () => {
   const desc = view.querySelector('.todo-add-desc');
   const addBtn = view.querySelector('.todo-add-btn');
 
+  addBtn.addEventListener('click', () => {
+    if (desc.value === '') {
+      return;
+    }
+
+    api.addTodo(desc.value)
+      .then(todo => {
+        app.todos.push(todo);
+        app.renderTodoList();
+        desc.value = '';
+      })
+      .catch(() => {
+        console.error('追加に失敗しました');
+      });
+  });
+
   document
     .querySelector('.todo-add-form-container')
     .appendChild(view);
@@ -70,6 +86,24 @@ app.initFilterView = () => {
     active: view.querySelector('.active-btn'),
     completed: view.querySelector('.completed-btn'),
   };
+
+  const toActive = name => {
+    Object.values(btns).forEach(btn => btn.classList.remove('active'));
+    btns[name].classList.add('active');
+  };
+
+  btns.all.addEventListener('click', () => {
+    app.renderTodoList();
+    toActive('all');
+  });
+  btns.active.addEventListener('click', () => {
+    app.renderTodoList(app.todos.filter(todo => !todo.is_completed));
+    toActive('active');
+  });
+  btns.completed.addEventListener('click', () => {
+    app.renderTodoList(app.todos.filter(todo => todo.is_completed));
+    toActive('completed');
+  });
 
   document
     .querySelector('.todo-filter-container')
@@ -92,10 +126,33 @@ app.todoListItemView = todoItem => {
   // チェックボックスの初期化
   const checkbox = view.querySelector('.completion-checkbox');
   checkbox.checked = todoItem.is_completed;
+  checkbox.addEventListener('change', () => {
+    api.updateTodo({ ...todoItem, is_completed: checkbox.checked })
+      .then(todo => {
+        app.replectTodo(todo);
+        app.renderTodoList();
+      })
+      .catch(() => {
+        console.error('完了ステータスの更新に失敗しました');
+        checkbox.checked = !checkbox.checkbox;
+      });
+  });
 
   // 削除ボタンの初期化
   const deleteBtn = view.querySelector('.todo-delete-btn');
   deleteBtn.style.display = 'none';
+
+  // クリック時に削除
+  deleteBtn.addEventListener('click', () => {
+    api.deleteTodo(todoItem.id)
+      .then(() => {
+        app.updateTodos(app.todos.filter(t => t.id !== todoItem.id));
+        app.renderTodoList();
+      })
+      .catch(() => {
+        console.error('削除に失敗しました');
+      });
+  });
 
   // マウスオーバーで削除ボタンの表示を切り替える
   view.addEventListener('mouseover', () => {
